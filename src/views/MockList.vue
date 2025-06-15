@@ -22,6 +22,10 @@
             <div class="bg-primary-600 h-2.5 rounded-full transition-all duration-300" 
                  :style="{ width: calculateProgress(item) + '%' }"></div>
           </div>
+          <div class="flex justify-between text-xs text-gray-500 mt-1">
+            <span>{{ calculateTotal(item) }} unidades</span>
+            <span>Meta: {{ item.target }} unidades</span>
+          </div>
         </div>
 
         <div v-if="item.isExpanded" class="mt-4">
@@ -125,6 +129,10 @@ const newContribution = ref({
 const calculateProgress = (item) => {
   const total = item.contributions.reduce((sum, c) => sum + c.quantity, 0)
   return Math.min(Math.round((total / item.target) * 100), 100)
+}
+
+const calculateTotal = (item) => {
+  return item.contributions.reduce((sum, c) => sum + c.quantity, 0)
 }
 
 const toggleItem = (itemId) => {
