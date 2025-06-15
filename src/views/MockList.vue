@@ -46,45 +46,74 @@
     </div>
 
     <!-- Contribution Dialog -->
-    <Dialog v-if="isDialogOpen" @close="closeDialog" class="relative z-50">
-      <div class="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <div class="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel class="mx-auto max-w-sm rounded-lg bg-white p-6 shadow-xl">
-          <DialogTitle class="text-lg font-medium text-gray-900 mb-4">Contribuir para {{ selectedItem?.title }}</DialogTitle>
-          
-          <form @submit.prevent="saveContribution" class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Nome</label>
-              <input v-model="newContribution.name" type="text" required
-                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
-            </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Quantidade de fardos</label>
-              <input v-model.number="newContribution.quantity" type="number" required min="1"
-                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
-            </div>
+    <TransitionRoot appear :show="isDialogOpen" as="template">
+      <Dialog as="div" @close="closeDialog" class="relative z-50">
+        <TransitionChild
+          as="template"
+          enter="duration-300 ease-out"
+          enter-from="opacity-0"
+          enter-to="opacity-100"
+          leave="duration-200 ease-in"
+          leave-from="opacity-100"
+          leave-to="opacity-0"
+        >
+          <div class="fixed inset-0 bg-black/30" aria-hidden="true" />
+        </TransitionChild>
 
-            <div class="flex justify-end space-x-3">
-              <button type="button" @click="closeDialog"
-                      class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
-                Cancelar
-              </button>
-              <button type="submit"
-                      class="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors">
-                Salvar
-              </button>
-            </div>
-          </form>
-        </DialogPanel>
-      </div>
-    </Dialog>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+          <TransitionChild
+            as="template"
+            enter="duration-300 ease-out"
+            enter-from="opacity-0 scale-95"
+            enter-to="opacity-100 scale-100"
+            leave="duration-200 ease-in"
+            leave-from="opacity-100 scale-100"
+            leave-to="opacity-0 scale-95"
+          >
+            <DialogPanel class="mx-auto max-w-sm rounded-lg bg-white p-6 shadow-xl">
+              <DialogTitle class="text-lg font-medium text-gray-900 mb-4">Contribuir para {{ selectedItem?.title }}</DialogTitle>
+              
+              <form @submit.prevent="saveContribution" class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Nome</label>
+                  <input v-model="newContribution.name" type="text" required
+                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Quantidade de fardos</label>
+                  <input v-model.number="newContribution.quantity" type="number" required min="1"
+                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                </div>
+
+                <div class="flex justify-end space-x-3">
+                  <button type="button" @click="closeDialog"
+                          class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
+                    Cancelar
+                  </button>
+                  <button type="submit"
+                          class="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors">
+                    Salvar
+                  </button>
+                </div>
+              </form>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
+      </Dialog>
+    </TransitionRoot>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
+import { 
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  TransitionRoot,
+  TransitionChild
+} from '@headlessui/vue'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/outline'
 
 const items = ref([
