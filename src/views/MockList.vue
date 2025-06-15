@@ -23,8 +23,8 @@
                  :style="{ width: calculateProgress(item) + '%' }"></div>
           </div>
           <div class="flex justify-between text-xs text-gray-500 mt-1">
-            <span>{{ calculateTotal(item) }} unidades</span>
-            <span>Meta: {{ item.target }} unidades</span>
+            <span>{{ calculateTotal(item) }} fardos</span>
+            <span>Meta: {{ item.target }} fardos</span>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
             <div v-for="contribution in item.contributions" :key="contribution.id" 
                  class="flex justify-between text-sm text-gray-600">
               <span>{{ contribution.name }}</span>
-              <span>{{ contribution.quantity }} unidades</span>
+              <span>{{ contribution.quantity }} fardos</span>
             </div>
           </div>
           
@@ -60,7 +60,7 @@
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700">Quantidade</label>
+              <label class="block text-sm font-medium text-gray-700">Quantidade de fardos</label>
               <input v-model.number="newContribution.quantity" type="number" required min="1"
                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
             </div>
