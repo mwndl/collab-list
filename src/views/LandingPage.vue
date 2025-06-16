@@ -12,7 +12,7 @@
         </p>
         <div class="space-x-4">
           <button
-            @click="showAuth = true"
+            @click="openAuthSlide('auth')"
             class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,15 +20,15 @@
             </svg>
             Criar Lista de Arrecadação
           </button>
-          <router-link
-            to="/join"
+          <button
+            @click="openAuthSlide('join')"
             class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors inline-flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
             Participar de uma Arrecadação
-          </router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -154,7 +154,7 @@
           Crie sua lista em segundos e comece a arrecadar com seus amigos
         </p>
         <button
-          @click="showAuth = true"
+          @click="openAuthSlide('auth')"
           class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -168,6 +168,7 @@
     <!-- Auth Slide -->
     <AuthSlide
       :is-open="showAuth"
+      :mode="authMode"
       @close="showAuth = false"
     />
   </div>
@@ -178,4 +179,10 @@ import { ref } from 'vue'
 import AuthSlide from '../components/AuthSlide.vue'
 
 const showAuth = ref(false)
+const authMode = ref('auth')
+
+const openAuthSlide = (mode) => {
+  authMode.value = mode
+  showAuth.value = true
+}
 </script> 

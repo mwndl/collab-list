@@ -8,7 +8,7 @@
       <div class="p-6 border-b">
         <div class="flex justify-between items-center">
           <h2 class="text-2xl font-bold text-gray-900">
-            {{ isLogin ? 'Entrar' : 'Criar Conta' }}
+            {{ mode === 'join' ? 'Participar da Lista' : (isLogin ? 'Entrar' : 'Criar Conta') }}
           </h2>
           <button
             @click="$emit('close')"
@@ -23,7 +23,34 @@
 
       <!-- Content -->
       <div class="flex-1 p-6 overflow-y-auto">
-        <form @submit.prevent="handleSubmit" class="space-y-6">
+        <!-- Join Mode -->
+        <form v-if="mode === 'join'" @submit.prevent="handleJoin" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Código da Lista
+            </label>
+            <input
+              v-model="joinCode"
+              type="text"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Digite o código da lista"
+              required
+            />
+            <p class="mt-2 text-sm text-gray-500">
+              Digite o código que você recebeu do organizador da lista
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Acessar Lista
+          </button>
+        </form>
+
+        <!-- Auth Mode -->
+        <form v-else @submit.prevent="handleSubmit" class="space-y-6">
           <div v-if="!isLogin">
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Nome
@@ -84,8 +111,8 @@
           </button>
         </form>
 
-        <!-- Social Login -->
-        <div class="mt-6">
+        <!-- Social Login (only in auth mode) -->
+        <div v-if="mode !== 'join'" class="mt-6">
           <div class="relative">
             <div class="absolute inset-0 flex items-center">
               <div class="w-full border-t border-gray-300"></div>
@@ -119,8 +146,8 @@
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="p-6 border-t">
+      <!-- Footer (only in auth mode) -->
+      <div v-if="mode !== 'join'" class="p-6 border-t">
         <p class="text-center text-gray-600">
           {{ isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
           <button
@@ -142,12 +169,18 @@ const props = defineProps({
   isOpen: {
     type: Boolean,
     required: true
+  },
+  mode: {
+    type: String,
+    default: 'auth',
+    validator: (value) => ['auth', 'join'].includes(value)
   }
 })
 
 const emit = defineEmits(['close'])
 
 const isLogin = ref(true)
+const joinCode = ref('')
 const form = reactive({
   name: '',
   email: '',
@@ -158,5 +191,10 @@ const form = reactive({
 const handleSubmit = () => {
   // TODO: Implement authentication logic
   console.log('Form submitted:', form)
+}
+
+const handleJoin = () => {
+  // TODO: Implement join logic
+  console.log('Join code:', joinCode.value)
 }
 </script> 
