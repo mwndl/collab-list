@@ -11,15 +11,15 @@
           Sem necessidade de login, com apenas um toque para contribuir!
         </p>
         <div class="space-x-4">
-          <router-link
-            to="/create"
+          <button
+            @click="showAuth = true"
             class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             Criar Lista de Arrecadação
-          </router-link>
+          </button>
           <router-link
             to="/join"
             class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors inline-flex items-center"
@@ -153,20 +153,29 @@
         <p class="text-xl mb-8 max-w-2xl mx-auto">
           Crie sua lista em segundos e comece a arrecadar com seus amigos
         </p>
-        <router-link
-          to="/create"
+        <button
+          @click="showAuth = true"
           class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
           Criar Lista de Arrecadação
-        </router-link>
+        </button>
       </div>
     </div>
+
+    <!-- Auth Slide -->
+    <AuthSlide
+      :is-open="showAuth"
+      @close="showAuth = false"
+    />
   </div>
 </template>
 
 <script setup>
-// Component logic can be added here if needed
+import { ref } from 'vue'
+import AuthSlide from '../components/AuthSlide.vue'
+
+const showAuth = ref(false)
 </script> 
