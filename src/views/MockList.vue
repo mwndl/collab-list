@@ -75,13 +75,13 @@
               
               <form @submit.prevent="saveContribution" class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">Nome</label>
+                  <label class="block text-sm font-medium text-gray-700">Digite seu nome</label>
                   <input v-model="newContribution.name" type="text" required
                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700">Quantidade de fardos</label>
+                  <label class="block text-sm font-medium text-gray-700">Quantos fardos você quer contribuir?</label>
                   <input v-model.number="newContribution.quantity" type="number" required min="1"
                          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
                 </div>
@@ -115,6 +115,7 @@ import {
   TransitionChild
 } from '@headlessui/vue'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/outline'
+import confetti from 'canvas-confetti'
 
 const items = ref([
   {
@@ -185,13 +186,55 @@ const closeDialog = () => {
   selectedItem.value = null
 }
 
+const triggerConfetti = () => {
+  const duration = 3 * 1000
+  const animationEnd = Date.now() + duration
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min
+  }
+
+  const interval = setInterval(function() {
+    const timeLeft = animationEnd - Date.now()
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval)
+    }
+
+    const particleCount = 50 * (timeLeft / duration)
+    
+    // since particles fall down, start a bit higher than random
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+    })
+    confetti({
+      ...defaults,
+      particleCount,
+      origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+    })
+  }, 250)
+}
+
 const saveContribution = () => {
   if (selectedItem.value) {
+    const previousProgress = calculateProgress(selectedItem.value)
+    
     selectedItem.value.contributions.push({
       id: Date.now(),
       name: newContribution.value.name,
       quantity: newContribution.value.quantity
     })
+
+    const newProgress = calculateProgress(selectedItem.value)
+    
+    // Se o progresso anterior era menor que 100% e agora é 100%, dispara os confetes
+    if (previousProgress < 100 && newProgress === 100) {
+      triggerConfetti()
+    }
+
     closeDialog()
   }
 }
