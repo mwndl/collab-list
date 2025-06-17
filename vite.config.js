@@ -18,4 +18,12 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.cjs',
   },
+  publicDir: 'public',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  }
 })
