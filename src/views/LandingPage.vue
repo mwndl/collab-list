@@ -461,13 +461,24 @@ const getNumberColor = (index) => {
 };
 
 const handleCardClick = (e) => {
-  // Verifica se o evento foi gerado por um toque
+  // Prevent click handling during touch events
   if (e.pointerType === 'touch') return;
+  
+  // Prevent multiple triggers
+  if (isScrolling.value) return;
+  isScrolling.value = true;
+  
   currentCard.value = (currentCard.value + 1) % cards.length;
+  
+  // Reset scroll lock after animation
+  setTimeout(() => {
+    isScrolling.value = false;
+  }, 500); // Match this with the transition duration
 };
 
 const handleTouchStart = (e) => {
   touchStartX.value = e.touches[0].clientX;
+  touchEndX.value = e.touches[0].clientX; // Reset touchEndX to prevent false triggers
 };
 
 const handleTouchMove = (e) => {
@@ -476,7 +487,13 @@ const handleTouchMove = (e) => {
 
 const handleTouchEnd = () => {
   const diff = touchStartX.value - touchEndX.value;
-  if (Math.abs(diff) > 50) {
+  const minSwipeDistance = 30; // Reduced minimum swipe distance for better responsiveness
+  
+  if (Math.abs(diff) > minSwipeDistance) {
+    // Prevent multiple triggers
+    if (isScrolling.value) return;
+    isScrolling.value = true;
+    
     if (diff > 0) {
       // Swipe left - next card
       currentCard.value = (currentCard.value + 1) % cards.length;
@@ -484,6 +501,11 @@ const handleTouchEnd = () => {
       // Swipe right - previous card
       currentCard.value = (currentCard.value - 1 + cards.length) % cards.length;
     }
+    
+    // Reset scroll lock after animation
+    setTimeout(() => {
+      isScrolling.value = false;
+    }, 500); // Match this with the transition duration
   }
 };
 
