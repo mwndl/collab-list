@@ -1,251 +1,301 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-white snap-y snap-mandatory overflow-y-scroll">
     <!-- Hero Section -->
-    <div class="container mx-auto px-4 py-16">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="text-left">
-          <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            Arrecadações Colaborativas Simplificadas
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden snap-start">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+            Organize suas arrecadações de forma simples e eficiente
           </h1>
-          <p class="text-xl text-gray-600 mb-8">
-            Crie listas de arrecadação, compartilhe com seus amigos e acompanhe o progresso em tempo real.
-            Sem necessidade de login, com apenas um toque para contribuir!
+          <p class="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto">
+            Crie listas de arrecadação, controle contribuições e acompanhe o progresso em tempo real.
+            Perfeito para confraternizações, eventos e muito mais!
           </p>
-          <div class="space-x-4">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               @click="openAuthSlide('auth')"
-              class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center"
+              class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Criar Lista de Arrecadação
+              Criar Lista Grátis
             </button>
             <button
               @click="openAuthSlide('join')"
-              class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors inline-flex items-center"
+              class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl border-2 border-blue-600"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-              Participar de uma Arrecadação
+              Acessar uma Lista
             </button>
           </div>
         </div>
-        <div class="relative">
-          <div class="relative bg-white p-4 rounded-2xl shadow-xl">
-            <img
-              src="https://placehold.co/600x400/2563eb/ffffff?text=Lista+de+Arrecadação"
-              alt="Lista de Arrecadação"
-              class="w-full h-auto rounded-xl"
-            />
-          </div>
-          <div class="absolute -bottom-6 -left-6 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div class="absolute -top-6 -right-6 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div class="absolute -bottom-8 right-20 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-        </div>
       </div>
-    </div>
+      <!-- Background Blobs -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute top-1/3 right-1/4 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+    </section>
 
     <!-- Features Section -->
-    <div class="bg-white py-24">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">
-          Como Funciona
-        </h2>
-        <div class="grid md:grid-cols-3 gap-12">
-          <div class="text-center p-6 relative">
-            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-semibold mb-4">Crie sua Lista</h3>
-              <p class="text-gray-600">
-                Adicione itens e quantidades necessárias para sua arrecadação
-              </p>
-            </div>
-          </div>
-          <div class="text-center p-6 relative">
-            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                </svg>
-              </div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-semibold mb-4">Compartilhe</h3>
-              <p class="text-gray-600">
-                Envie o link para seus amigos - sem necessidade de login
-              </p>
-            </div>
-          </div>
-          <div class="text-center p-6 relative">
-            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-            </div>
-            <div class="mt-8">
-              <h3 class="text-xl font-semibold mb-4">Contribua</h3>
-              <p class="text-gray-600">
-                Um toque para contribuir e acompanhar o progresso em tempo real
-              </p>
-            </div>
-          </div>
-        </div>
+    <section id="features" class="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-white snap-start relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
       </div>
-    </div>
 
-    <!-- WhatsApp Comparison Section -->
-    <div class="container mx-auto px-4 py-24">
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 class="text-4xl font-bold text-gray-900 mb-8">
-            Chega de listas em grupos!
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Como Funciona
           </h2>
-          <div class="space-y-8">
-            <div>
-              <p class="text-gray-600 text-lg leading-relaxed">
-                Você já passou por isso: alguém cria uma lista de arrecadação, joga no grupo, todo mundo copia e cola, 
-                cada um coloca do jeito que quer, alguns esquecem de marcar o que já foi pego, sobrescrevem a contribuição do outro, 
-                marcam errado... No final, é um caos!
-              </p>
-            </div>
-            <div>
-              <p class="text-gray-600 text-lg leading-relaxed">
-                Com o CollabList, você tem todo o controle sobre sua lista. Visualize as contribuições 
-                em tempo real, ajuste as metas conforme necessário, acompanhe o progresso e mantenha 
-                tudo organizado em um só lugar. Perfeito para eventos que precisam de grandes quantidades 
-                de itens, metas de doações ou qualquer tipo de arrecadação colaborativa.
-              </p>
-            </div>
-          </div>
+          <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+            Três passos simples para começar a organizar suas arrecadações
+          </p>
         </div>
-        <div class="relative">
-          <div class="relative bg-white p-4 rounded-2xl shadow-xl">
-            <img
-              src="https://placehold.co/600x600/2563eb/ffffff?text=WhatsApp+vs+CollabList"
-              alt="Comparação WhatsApp vs CollabList"
-              class="w-full h-auto rounded-xl aspect-square object-cover"
-            />
-          </div>
-          <div class="absolute -bottom-6 -left-6 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div class="absolute -top-6 -right-6 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Key Benefits Section -->
-    <div class="container mx-auto px-4 py-24">
-      <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">
-        Por que usar?
-      </h2>
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="flex items-start">
-            <div class="bg-green-100 p-4 rounded-xl mr-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold mb-3">Simples e Rápido</h3>
-              <p class="text-gray-600 text-lg">
-                Sem necessidade de criar conta ou fazer login. Apenas compartilhe o link e comece a arrecadar!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="flex items-start">
-            <div class="bg-blue-100 p-4 rounded-xl mr-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold mb-3">Acompanhamento em Tempo Real</h3>
-              <p class="text-gray-600 text-lg">
-                Veja o progresso da arrecadação, quem contribuiu e quanto falta para atingir a meta
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="flex items-start">
-            <div class="bg-purple-100 p-4 rounded-xl mr-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold mb-3">Contribuição Instantânea</h3>
-              <p class="text-gray-600 text-lg">
-                Com apenas um toque, seus amigos podem contribuir e você acompanha tudo em tempo real
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="flex items-start">
-            <div class="bg-yellow-100 p-4 rounded-xl mr-6">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-2xl font-semibold mb-3">Transparência</h3>
-              <p class="text-gray-600 text-lg">
-                Todos podem ver o progresso em tempo real. Sem dúvidas sobre quem já contribuiu ou quanto falta.
-              </p>
+        <!-- Card Stack Container -->
+        <div class="relative max-w-2xl mx-auto h-[400px]">
+          <!-- Cards Stack -->
+          <div class="relative w-full h-full">
+            <div 
+              v-for="(card, index) in cards" 
+              :key="index"
+              class="absolute w-full h-full transition-all duration-500 ease-out cursor-pointer"
+              :style="getCardStackStyle(index)"
+              @click="handleCardClick"
+              @touchstart="handleTouchStart"
+              @touchmove="handleTouchMove"
+              @touchend="handleTouchEnd"
+            >
+              <div class="relative group w-full h-full">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative bg-white rounded-2xl p-8 shadow-xl h-full flex">
+                  <!-- Number Badge -->
+                  <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center">
+                    <div class="relative">
+                      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full blur-sm"></div>
+                      <span class="relative text-7xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">{{ index + 1 }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="flex-grow flex flex-col justify-center pl-8 border-l-2 border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">{{ card.title }}</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed max-w-2xl">{{ card.description }}</p>
+                  </div>
+
+                  <!-- Navigation Arrow -->
+                  <div class="absolute right-6 bottom-6 text-gray-400 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="min-h-screen flex items-center justify-center py-8 sm:py-16 lg:py-20 bg-white snap-start relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-8 sm:mb-16">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-4">
+            Por que usar o CollabList?
+          </h2>
+          <p class="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
+            Uma solução completa para suas arrecadações
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto">
+          <!-- Benefit 1 -->
+          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Simples e Rápido</h3>
+                <p class="text-sm sm:text-base text-gray-600">
+                  Crie e gerencie suas listas em segundos. Interface intuitiva e sem complicações.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Colaboração em Tempo Real</h3>
+                <p class="text-sm sm:text-base text-gray-600">
+                  Todos veem as atualizações instantaneamente. Sem duplicatas, sem confusão.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-pink-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Controle Total</h3>
+                <p class="text-sm sm:text-base text-gray-600">
+                  Acompanhe o progresso, ajuste metas e mantenha tudo organizado em um só lugar.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+            <div class="flex items-start space-x-3 sm:space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Seguro e Confiável</h3>
+                <p class="text-sm sm:text-base text-gray-600">
+                  Escolha entre listas públicas e privadas. Você tem controle total sobre quem pode acessá-las.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CTA Section -->
-    <div class="bg-blue-600 text-white py-24">
-      <div class="container mx-auto px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-          <h2 class="text-4xl font-bold mb-6">Comece sua Arrecadação Agora</h2>
-          <p class="text-xl mb-12">
-            Crie sua lista em segundos e comece a arrecadar com seus amigos
+    <section id="cta" class="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 to-blue-800 snap-start relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-white opacity-5 rounded-full"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-white opacity-5 rounded-full"></div>
+      </div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-block mb-6 sm:mb-8">
+            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500 text-white">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Comece Agora
+            </span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
+            Do churras ao evento da firma, organize tudo com o CollabList
+          </h2>
+          
+          <p class="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto">
+            Crie sua primeira lista gratuitamente e descubra como é fácil organizar o que cada um vai levar pro seu evento.
+            Sem complicações, sem listas confusas em grupos.
           </p>
-          <div class="flex justify-center space-x-6">
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               @click="openAuthSlide('auth')"
-              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors inline-flex items-center text-lg"
+              class="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-white text-blue-600 rounded-xl text-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Criar Lista de Arrecadação
+              Criar Lista Grátis
             </button>
             <button
               @click="openAuthSlide('join')"
-              class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-colors inline-flex items-center text-lg"
+              class="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-blue-500 text-white rounded-xl text-lg font-semibold hover:bg-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border-2 border-blue-400"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-              Participar de uma Arrecadação
+              Acessar uma Lista
             </button>
+          </div>
+
+          <div class="mt-12 sm:mt-16 flex items-center justify-center gap-8 text-blue-100">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Simples e Rápido</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Totalmente gratuito</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Fácil de usar</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Navigation Arrows -->
+    <div class="fixed right-4 sm:right-8 top-1/2 transform -translate-y-1/2 z-50">
+      <div class="flex flex-col gap-3 sm:gap-4">
+        <button
+          v-for="section in sections"
+          :key="section.id"
+          @click="scrollToSection(section.id)"
+          class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300"
+          :class="currentSection === section.id ? 'bg-blue-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'"
+          :title="section.name"
+        ></button>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+      v-if="currentSection !== 'cta'"
+      class="fixed bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-50 cursor-pointer"
+      @click="scrollToNextSection"
+    >
+      <svg
+        class="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 animate-bounce"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        ></path>
+      </svg>
     </div>
 
     <!-- Auth Slide -->
     <AuthSlide
-      :is-open="showAuth"
+      v-if="showAuth"
       :mode="authMode"
       @close="showAuth = false"
     />
@@ -253,19 +303,260 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import AuthSlide from '../components/AuthSlide.vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import AuthSlide from '@/components/AuthSlide.vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const showAuth = ref(false)
 const authMode = ref('auth')
+const currentSection = ref('hero')
+const isScrolling = ref(false)
+const lastScrollTime = ref(0)
+const scrollTimeout = ref(null)
+const currentCard = ref(0)
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+
+const sections = [
+  { id: 'hero', name: 'Início' },
+  { id: 'features', name: 'Como Funciona' },
+  { id: 'benefits', name: 'Benefícios' },
+  { id: 'cta', name: 'Comece Agora' }
+]
+
+const cards = [
+  {
+    title: 'Crie sua Lista',
+    description: 'Crie uma lista de arrecadação em segundos. Defina itens, quantidades e valores de forma simples e intuitiva.'
+  },
+  {
+    title: 'Compartilhe',
+    description: 'Compartilhe o link da sua lista com os participantes. Eles podem contribuir facilmente, sem precisar de cadastro.'
+  },
+  {
+    title: 'Acompanhe',
+    description: 'Acompanhe o progresso em tempo real. Veja quem contribuiu e o que falta arrecadar de forma clara e organizada.'
+  }
+]
 
 const openAuthSlide = (mode) => {
   authMode.value = mode
   showAuth.value = true
+  document.body.style.overflow = 'hidden'
 }
+
+const scrollToSection = (sectionId) => {
+  if (isScrolling.value) return
+  isScrolling.value = true
+  
+  const section = document.getElementById(sectionId)
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' })
+    currentSection.value = sectionId
+  }
+  
+  setTimeout(() => {
+    isScrolling.value = false
+  }, 300)
+}
+
+const scrollToNextSection = () => {
+  const currentIndex = sections.findIndex(s => s.id === currentSection.value)
+  if (currentIndex < sections.length - 1) {
+    scrollToSection(sections[currentIndex + 1].id)
+  }
+}
+
+const scrollToPreviousSection = () => {
+  const currentIndex = sections.findIndex(s => s.id === currentSection.value)
+  if (currentIndex > 0) {
+    scrollToSection(sections[currentIndex - 1].id)
+  }
+}
+
+const handleWheel = (event) => {
+  event.preventDefault()
+  
+  const now = Date.now()
+  if (now - lastScrollTime.value < 100) return
+  
+  lastScrollTime.value = now
+  
+  if (event.deltaY > 0) {
+    scrollToNextSection()
+  } else {
+    scrollToPreviousSection()
+  }
+}
+
+const handleScroll = () => {
+  const now = Date.now()
+  if (now - lastScrollTime.value < 100) return
+  
+  const scrollPosition = window.scrollY
+  const windowHeight = window.innerHeight
+  const currentIndex = sections.findIndex(s => s.id === currentSection.value)
+  
+  if (Math.abs(scrollPosition - (currentIndex * windowHeight)) > windowHeight * 0.3) {
+    lastScrollTime.value = now
+    
+    if (scrollPosition > currentIndex * windowHeight) {
+      scrollToNextSection()
+    } else {
+      scrollToPreviousSection()
+    }
+  }
+}
+
+const scrollToEnd = () => {
+  scrollToSection('cta')
+}
+
+const scrollToStart = () => {
+  scrollToSection('hero')
+}
+
+const getCardStackStyle = (index) => {
+  const isTopCard = index === currentCard.value;
+  const isNextCard = index === (currentCard.value + 1) % cards.length;
+  const isPrevCard = index === (currentCard.value - 1 + cards.length) % cards.length;
+  
+  let transform = '';
+  let zIndex = 0;
+  let opacity = 1;
+  
+  if (isTopCard) {
+    transform = 'translateY(0) scale(1)';
+    zIndex = 3;
+  } else if (isNextCard) {
+    transform = 'translateY(20px) translateX(20px) scale(0.95)';
+    zIndex = 2;
+    opacity = 0.8;
+  } else if (isPrevCard) {
+    transform = 'translateY(20px) translateX(-20px) scale(0.95)';
+    zIndex = 2;
+    opacity = 0.8;
+  } else {
+    transform = 'translateY(40px) scale(0.9)';
+    zIndex = 1;
+    opacity = 0.6;
+  }
+  
+  return {
+    transform,
+    zIndex,
+    opacity,
+    pointerEvents: 'auto'
+  };
+};
+
+const getNumberColor = (index) => {
+  const colors = ['text-blue-600', 'text-purple-600', 'text-pink-600'];
+  return colors[index];
+};
+
+const handleCardClick = (e) => {
+  // Verifica se o evento foi gerado por um toque
+  if (e.pointerType === 'touch') return;
+  currentCard.value = (currentCard.value + 1) % cards.length;
+};
+
+const handleTouchStart = (e) => {
+  touchStartX.value = e.touches[0].clientX;
+};
+
+const handleTouchMove = (e) => {
+  touchEndX.value = e.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+  const diff = touchStartX.value - touchEndX.value;
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) {
+      // Swipe left - next card
+      currentCard.value = (currentCard.value + 1) % cards.length;
+    } else {
+      // Swipe right - previous card
+      currentCard.value = (currentCard.value - 1 + cards.length) % cards.length;
+    }
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('wheel', handleWheel, { passive: false })
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  
+  let lastScrollTop = 0
+  let scrollCount = 0
+  
+  window.addEventListener('scroll', () => {
+    const currentScrollTop = window.scrollY
+    const scrollDiff = Math.abs(currentScrollTop - lastScrollTop)
+    
+    if (scrollDiff > 100) {
+      scrollCount++
+      
+      if (scrollCount >= 2) {
+        if (currentScrollTop > lastScrollTop) {
+          scrollToEnd()
+        } else {
+          scrollToStart()
+        }
+        scrollCount = 0
+      }
+    } else {
+      scrollCount = 0
+    }
+    
+    lastScrollTop = currentScrollTop
+  })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('wheel', handleWheel)
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
-<style>
+<style scoped>
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Ensure smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll Snap */
+.snap-y {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Prevent Scroll During Animation */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Blob Animation */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);

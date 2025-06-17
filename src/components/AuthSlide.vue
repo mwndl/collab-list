@@ -1,200 +1,225 @@
 <template>
-  <div
-    class="fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-xl transform transition-transform duration-300 ease-in-out"
-    :class="{ 'translate-x-0': isOpen, 'translate-x-full': !isOpen }"
-  >
-    <div class="h-full flex flex-col">
-      <!-- Header -->
-      <div class="p-6 border-b">
-        <div class="flex justify-between items-center">
-          <h2 class="text-2xl font-bold text-gray-900">
-            {{ mode === 'join' ? 'Participar da Lista' : (isLogin ? 'Entrar' : 'Criar Conta') }}
-          </h2>
-          <button
-            @click="$emit('close')"
-            class="text-gray-500 hover:text-gray-700"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
+  <div class="fixed inset-0 z-50 overflow-hidden">
+    <!-- Backdrop -->
+    <div 
+      class="absolute inset-0 bg-black/50 transition-opacity duration-300"
+      :class="{ 'opacity-0': !isVisible, 'opacity-100': isVisible }"
+      @click="close"
+    ></div>
+
+    <!-- Slide Panel -->
+    <div 
+      class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transition-transform duration-300 ease-in-out"
+      :class="{ 'translate-x-full': !isVisible, 'translate-x-0': isVisible }"
+    >
+      <!-- Close Button -->
+      <button 
+        @click="close"
+        class="absolute top-4 right-4 text-gray-400 hover:text-gray-500 focus:outline-none"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
 
       <!-- Content -->
-      <div class="flex-1 p-6 overflow-y-auto">
-        <!-- Join Mode -->
-        <form v-if="mode === 'join'" @submit.prevent="handleJoin" class="space-y-6">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Código da Lista
-            </label>
-            <input
-              v-model="joinCode"
-              type="text"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Digite o código da lista"
-              required
-            />
-            <p class="mt-2 text-sm text-gray-500">
-              Digite o código que você recebeu do organizador da lista
+      <div class="h-full flex flex-col">
+        <!-- Header -->
+        <div class="px-6 py-8 border-b border-gray-200">
+          <h2 class="text-2xl font-bold text-gray-900">
+            {{ mode === 'auth' ? 'Criar Nova Lista' : 'Acessar Lista' }}
+          </h2>
+          <p class="mt-2 text-gray-600">
+            {{ mode === 'auth' 
+              ? 'Crie sua lista de arrecadação em segundos' 
+              : 'Digite o código da lista para contribuir' }}
+          </p>
+        </div>
+
+        <!-- Form -->
+        <div class="flex-1 px-6 py-8 overflow-y-auto">
+          <!-- Join Mode -->
+          <form v-if="mode === 'join'" @submit.prevent="handleJoin" class="space-y-6">
+            <div>
+              <label for="listCode" class="block text-sm font-medium text-gray-700">Código da Lista</label>
+              <input
+                type="text"
+                id="listCode"
+                v-model="joinCode"
+                class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Digite o código da lista"
+                required
+              />
+              <p class="mt-2 text-sm text-gray-500">
+                Digite o código que você recebeu do organizador da lista
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full rounded-lg bg-blue-600 px-4 py-3 text-white font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            >
+              Acessar Lista
+            </button>
+          </form>
+
+          <!-- Auth Mode -->
+          <form v-else @submit.prevent="handleSubmit" class="space-y-6">
+            <div v-if="!isLogin">
+              <label for="name" class="block text-sm font-medium text-gray-700">Seu Nome</label>
+              <input
+                type="text"
+                id="name"
+                v-model="form.name"
+                class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Como você quer ser chamado?"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                id="email"
+                v-model="form.email"
+                class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
+              <input
+                type="password"
+                id="password"
+                v-model="form.password"
+                class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <div v-if="!isLogin">
+              <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Senha</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                v-model="form.confirmPassword"
+                class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full rounded-lg bg-blue-600 px-4 py-3 text-white font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            >
+              {{ isLogin ? 'Entrar' : 'Criar Conta' }}
+            </button>
+          </form>
+
+          <!-- Auth Mode Footer -->
+          <div v-if="mode === 'auth'" class="mt-6">
+            <p class="text-center text-gray-600">
+              {{ isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
+              <button
+                @click="isLogin = !isLogin"
+                class="text-blue-600 hover:text-blue-700 font-semibold"
+              >
+                {{ isLogin ? 'Criar conta' : 'Fazer login' }}
+              </button>
             </p>
           </div>
-
-          <button
-            type="submit"
-            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-          >
-            Acessar Lista
-          </button>
-        </form>
-
-        <!-- Auth Mode -->
-        <form v-else @submit.prevent="handleSubmit" class="space-y-6">
-          <div v-if="!isLogin">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Nome
-            </label>
-            <input
-              v-model="form.name"
-              type="text"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Seu nome completo"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              v-model="form.email"
-              type="email"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="seu@email.com"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Senha
-            </label>
-            <input
-              v-model="form.password"
-              type="password"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-
-          <div v-if="!isLogin">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Confirmar Senha
-            </label>
-            <input
-              v-model="form.confirmPassword"
-              type="password"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-          >
-            {{ isLogin ? 'Entrar' : 'Criar Conta' }}
-          </button>
-        </form>
-
-        <!-- Social Login (only in auth mode) -->
-        <div v-if="mode !== 'join'" class="mt-6">
-          <div class="relative">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">Ou continue com</span>
-            </div>
-          </div>
-
-          <div class="mt-6 grid grid-cols-2 gap-3">
-            <button
-              class="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
-                />
-              </svg>
-              Google
-            </button>
-            <button
-              class="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-              </svg>
-              Facebook
-            </button>
-          </div>
         </div>
-      </div>
-
-      <!-- Footer (only in auth mode) -->
-      <div v-if="mode !== 'join'" class="p-6 border-t">
-        <p class="text-center text-gray-600">
-          {{ isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
-          <button
-            @click="isLogin = !isLogin"
-            class="text-blue-600 hover:text-blue-700 font-semibold"
-          >
-            {{ isLogin ? 'Criar conta' : 'Fazer login' }}
-          </button>
-        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    required: true
-  },
   mode: {
     type: String,
-    default: 'auth',
+    required: true,
     validator: (value) => ['auth', 'join'].includes(value)
   }
 })
 
 const emit = defineEmits(['close'])
 
+const router = useRouter()
+const isVisible = ref(false)
 const isLogin = ref(true)
 const joinCode = ref('')
-const form = reactive({
+const form = ref({
   name: '',
   email: '',
   password: '',
   confirmPassword: ''
 })
 
-const handleSubmit = () => {
-  // TODO: Implement authentication logic
-  console.log('Form submitted:', form)
+// Handle form submission
+const handleSubmit = async () => {
+  try {
+    if (isLogin.value) {
+      // TODO: Implement login
+      console.log('Login:', form.value)
+    } else {
+      // TODO: Implement registration
+      console.log('Register:', form.value)
+    }
+  } catch (error) {
+    console.error('Error:', error)
+  }
 }
 
-const handleJoin = () => {
-  // TODO: Implement join logic
-  console.log('Join code:', joinCode.value)
+// Handle join submission
+const handleJoin = async () => {
+  try {
+    // TODO: Implement join logic
+    console.log('Join code:', joinCode.value)
+  } catch (error) {
+    console.error('Error:', error)
+  }
 }
-</script> 
+
+// Close the slide
+const close = () => {
+  isVisible.value = false
+  setTimeout(() => {
+    emit('close')
+  }, 300) // Wait for animation to complete
+}
+
+// Watch for changes in the mode prop
+watch(() => props.mode, () => {
+  form.value = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
+  joinCode.value = ''
+  isLogin.value = true
+})
+
+// Show the slide when mounted
+onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 50)
+})
+</script>
+
+<style scoped>
+/* Prevent body scroll when slide is open */
+:deep(body) {
+  overflow: hidden;
+}
+</style> 
