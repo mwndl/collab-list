@@ -402,6 +402,21 @@ const handleScroll = () => {
   const windowHeight = window.innerHeight
   const currentIndex = sections.findIndex(s => s.id === currentSection.value)
   
+  // Find the current section based on scroll position
+  const currentSectionElement = sections.find(section => {
+    const element = document.getElementById(section.id)
+    if (!element) return false
+    
+    const rect = element.getBoundingClientRect()
+    // Consider a section "current" if it's more than 50% visible
+    return rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5
+  })
+  
+  if (currentSectionElement && currentSectionElement.id !== currentSection.value) {
+    currentSection.value = currentSectionElement.id
+  }
+  
+  // Handle snap scrolling
   if (Math.abs(scrollPosition - (currentIndex * windowHeight)) > windowHeight * 0.3) {
     lastScrollTime.value = now
     
@@ -509,9 +524,33 @@ const handleTouchEnd = () => {
   }
 };
 
+// Add Intersection Observer for better section detection
 onMounted(() => {
   window.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('scroll', handleScroll, { passive: true })
+  
+  // Create Intersection Observer for section detection
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id
+        if (sectionId !== currentSection.value) {
+          currentSection.value = sectionId
+        }
+      }
+    })
+  }, {
+    threshold: 0.5, // Trigger when section is 50% visible
+    rootMargin: '-10% 0px -10% 0px' // Add some margin to prevent edge cases
+  })
+  
+  // Observe all sections
+  sections.forEach(section => {
+    const element = document.getElementById(section.id)
+    if (element) {
+      observer.observe(element)
+    }
+  })
   
   let lastScrollTop = 0
   let scrollCount = 0
@@ -536,6 +575,11 @@ onMounted(() => {
     }
     
     lastScrollTop = currentScrollTop
+  })
+  
+  // Cleanup observer on component unmount
+  onUnmounted(() => {
+    observer.disconnect()
   })
 })
 
