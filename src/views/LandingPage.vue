@@ -53,7 +53,7 @@
         </div>
 
         <!-- Card Stack Container -->
-        <div class="relative max-w-2xl mx-auto h-[300px] sm:h-[400px]">
+        <div class="relative max-w-2xl mx-auto h-[250px] sm:h-[400px]">
           <!-- Cards Stack -->
           <div class="relative w-full h-full">
             <div 
@@ -67,25 +67,25 @@
               @touchend="handleTouchEnd"
             >
               <div class="relative group w-full h-full">
-                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                <div class="relative bg-white rounded-2xl p-4 sm:p-8 shadow-xl h-full flex flex-col sm:flex-row">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative bg-white rounded-xl sm:rounded-2xl p-3 sm:p-8 shadow-xl h-full flex flex-col sm:flex-row">
                   <!-- Number Badge -->
-                  <div class="flex-shrink-0 w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center mb-4 sm:mb-0">
+                  <div class="flex-shrink-0 w-12 h-12 sm:w-24 sm:h-24 flex items-center justify-center mb-2 sm:mb-0">
                     <div class="relative">
                       <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full blur-sm"></div>
-                      <span class="relative text-5xl sm:text-7xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">{{ index + 1 }}</span>
+                      <span class="relative text-4xl sm:text-7xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">{{ index + 1 }}</span>
                     </div>
                   </div>
 
                   <!-- Content -->
                   <div class="flex-grow flex flex-col justify-center sm:pl-8 sm:border-l-2 sm:border-gray-100">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 tracking-tight">{{ card.title }}</h3>
-                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed">{{ card.description }}</p>
+                    <h3 class="text-lg sm:text-2xl font-bold text-gray-900 mb-1 sm:mb-4 tracking-tight">{{ card.title }}</h3>
+                    <p class="text-sm sm:text-lg text-gray-600 leading-relaxed">{{ card.description }}</p>
                   </div>
 
                   <!-- Navigation Arrow -->
-                  <div class="absolute right-4 sm:right-6 bottom-4 sm:bottom-6 text-gray-400 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="absolute right-3 sm:right-6 bottom-3 sm:bottom-6 text-gray-400 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <svg class="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
                     </svg>
                   </div>
@@ -114,17 +114,17 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-8 max-w-6xl mx-auto">
           <!-- Benefit 1 -->
-          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
             <div class="flex items-start space-x-3 sm:space-x-4">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-12 sm:h-12 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Simples e Rápido</h3>
+                <h3 class="text-base sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Simples e Rápido</h3>
                 <p class="text-sm sm:text-base text-gray-600">
                   Crie e gerencie suas listas em segundos. Interface intuitiva e sem complicações.
                 </p>
@@ -133,15 +133,15 @@
           </div>
 
           <!-- Benefit 2 -->
-          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
             <div class="flex items-start space-x-3 sm:space-x-4">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-12 sm:h-12 bg-purple-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Colaboração em Tempo Real</h3>
+                <h3 class="text-base sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Colaboração em Tempo Real</h3>
                 <p class="text-sm sm:text-base text-gray-600">
                   Todos veem as atualizações instantaneamente. Sem duplicatas, sem confusão.
                 </p>
@@ -150,15 +150,15 @@
           </div>
 
           <!-- Benefit 3 -->
-          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
             <div class="flex items-start space-x-3 sm:space-x-4">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-pink-100 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-12 sm:h-12 bg-pink-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Controle Total</h3>
+                <h3 class="text-base sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Controle Total</h3>
                 <p class="text-sm sm:text-base text-gray-600">
                   Acompanhe o progresso, ajuste metas e mantenha tudo organizado em um só lugar.
                 </p>
@@ -167,15 +167,15 @@
           </div>
 
           <!-- Benefit 4 -->
-          <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
+          <div class="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-8 shadow-lg sm:shadow-xl border border-gray-100 hover:border-blue-200 transition-all duration-300">
             <div class="flex items-start space-x-3 sm:space-x-4">
-              <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex-shrink-0 w-8 h-8 sm:w-12 sm:h-12 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center">
+                <svg class="w-4 h-4 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Seguro e Confiável</h3>
+                <h3 class="text-base sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">Seguro e Confiável</h3>
                 <p class="text-sm sm:text-base text-gray-600">
                   Escolha entre listas públicas e privadas. Você tem controle total sobre quem pode acessá-las.
                 </p>
@@ -187,7 +187,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 to-blue-800 snap-start relative overflow-hidden">
+    <section id="cta" class="min-h-screen flex items-center justify-center py-8 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 to-blue-800 snap-start relative overflow-hidden">
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -201,57 +201,57 @@
 
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-block mb-6 sm:mb-8">
-            <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500 text-white">
-              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="inline-block mb-4 sm:mb-8">
+            <span class="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-blue-500 text-white">
+              <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
               Comece Agora
             </span>
           </div>
 
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 leading-tight">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-8 leading-tight">
             Do churras ao evento da firma, organize tudo com o CollabList
           </h2>
           
-          <p class="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 max-w-2xl mx-auto">
+          <p class="text-base sm:text-xl text-blue-100 mb-6 sm:mb-12 max-w-2xl mx-auto">
             Crie sua primeira lista gratuitamente e descubra como é fácil organizar o que cada um vai levar pro seu evento.
             Sem complicações, sem listas confusas em grupos.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <button
               @click="openAuthSlide('auth')"
-              class="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-white text-blue-600 rounded-xl text-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              class="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-white text-blue-600 rounded-lg sm:rounded-xl text-base sm:text-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Criar Lista Grátis
             </button>
             <button
               @click="openAuthSlide('join')"
-              class="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-blue-500 text-white rounded-xl text-lg font-semibold hover:bg-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border-2 border-blue-400"
+              class="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-blue-500 text-white rounded-lg sm:rounded-xl text-base sm:text-lg font-semibold hover:bg-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border-2 border-blue-400"
             >
               Acessar uma Lista
             </button>
           </div>
 
-          <div class="mt-12 sm:mt-16 flex items-center justify-center gap-8 text-blue-100">
+          <div class="mt-8 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-blue-100">
             <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-sm">Simples e Rápido</span>
+              <span class="text-xs sm:text-sm">Simples e Rápido</span>
             </div>
             <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-sm">Totalmente gratuito</span>
+              <span class="text-xs sm:text-sm">Totalmente gratuito</span>
             </div>
             <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-sm">Fácil de usar</span>
+              <span class="text-xs sm:text-sm">Fácil de usar</span>
             </div>
           </div>
         </div>
