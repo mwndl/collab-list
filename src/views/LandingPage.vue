@@ -53,7 +53,7 @@
         </div>
 
         <!-- Card Stack Container -->
-        <div class="relative max-w-2xl mx-auto h-[400px]">
+        <div class="relative max-w-2xl mx-auto h-[300px] sm:h-[400px]">
           <!-- Cards Stack -->
           <div class="relative w-full h-full">
             <div 
@@ -68,24 +68,24 @@
             >
               <div class="relative group w-full h-full">
                 <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                <div class="relative bg-white rounded-2xl p-8 shadow-xl h-full flex">
+                <div class="relative bg-white rounded-2xl p-4 sm:p-8 shadow-xl h-full flex flex-col sm:flex-row">
                   <!-- Number Badge -->
-                  <div class="flex-shrink-0 w-24 h-24 flex items-center justify-center">
+                  <div class="flex-shrink-0 w-16 h-16 sm:w-24 sm:h-24 flex items-center justify-center mb-4 sm:mb-0">
                     <div class="relative">
                       <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full blur-sm"></div>
-                      <span class="relative text-7xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">{{ index + 1 }}</span>
+                      <span class="relative text-5xl sm:text-7xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-transparent">{{ index + 1 }}</span>
                     </div>
                   </div>
 
                   <!-- Content -->
-                  <div class="flex-grow flex flex-col justify-center pl-8 border-l-2 border-gray-100">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4 tracking-tight">{{ card.title }}</h3>
-                    <p class="text-gray-600 text-lg leading-relaxed max-w-2xl">{{ card.description }}</p>
+                  <div class="flex-grow flex flex-col justify-center sm:pl-8 sm:border-l-2 sm:border-gray-100">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 tracking-tight">{{ card.title }}</h3>
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed">{{ card.description }}</p>
                   </div>
 
                   <!-- Navigation Arrow -->
-                  <div class="absolute right-6 bottom-6 text-gray-400 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="absolute right-4 sm:right-6 bottom-4 sm:bottom-6 text-gray-400 opacity-50 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
                     </svg>
                   </div>
